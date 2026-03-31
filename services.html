@@ -1,0 +1,604 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="images/woodf.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link href="css/tiny-slider.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<title>Межкомнатный двери и лестницы FARAHWOOD.</title>
+	</head>
+<style>
+/* Основная сетка (если используешь Bootstrap, эти стили дополнят его) */
+.product-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    /* Убираем фиксированную высоту в %, используем flex для выравнивания */
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    transition: 0.3s;
+    text-align: center;
+}
+
+.product-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Контейнер для фото — делаем его прямоугольным под ручки */
+.img-container {
+    width: 100%;
+    aspect-ratio: 3 / 2; /* Изменил с 1/1 на 3/2 для горизонтальных фото */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9; /* Легкий фон под картинкой */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ручка полностью видна, не обрезается */
+}
+
+/* Название товара */
+.product-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* Селектор выбора цвета (как на скриншоте) */
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Кнопка "В корзину" (Твой фирменный зеленый) */
+.btn-cart {
+    background: #3b5d50;
+    color: #fff;
+    display: block;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto; /* Прижимает кнопку к низу, если текст разный */
+    transition: background 0.2s;
+}
+
+.btn-cart:hover {
+    background: #2e4a40;
+    color: #fff;
+}
+
+    /*==================================================================*/
+    .hero {
+    background-color: #1a3024; 
+    position: relative;
+    padding: clamp(20px, 5vh, 60px) 0;
+    overflow: hidden;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+}
+
+.hero-grid {
+    display: flex; 
+    flex-wrap: nowrap; 
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.hero-text {
+    flex: 1.2; 
+    z-index: 10;
+}
+
+.main-title {
+    font-size: clamp(1.2rem, 4vw, 3.5rem); 
+    color: #f9bf29; 
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.hero-description {
+    font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 400px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.door-img {
+    max-width: 100%; 
+    height: auto;
+    max-height: 70vh; 
+    object-fit: contain;
+    filter: drop-shadow(-15px 15px 30px rgba(0,0,0,0.5));
+}
+
+.wood-line-new {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(60px, 10vh, 120px);
+    background: #2e1c0a; 
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); 
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+ 
+    clip-path: polygon(0 30%, 100% 0%, 100% 100%, 0% 100%); 
+    z-index: 2;
+}
+
+.wood-text {
+    color: rgba(255, 255, 255, 0.1);
+    font-size: clamp(1.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: clamp(5px, 2vw, 15px);
+}
+
+@media (min-width: 2000px) {
+    .container {
+        max-width: 1800px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .hero-grid {
+        gap: 10px;
+    }
+    .main-title {
+        font-size: 1.1rem;
+    }
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.custom-pagination .page-link {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 10px 18px;
+}
+.custom-pagination .page-item.active .page-link {
+    background: #f9bf29;
+    border-color: #f9bf29;
+    color: #3b5d50;
+    font-weight: bold;
+}
+.custom-pagination .page-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: #f9bf29;
+}
+</style>
+	<body>
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+			<div class="container">
+				<img src="images/025.png" alt="" style="width: 50px;   height: 50px;">
+				<a class="navbar-brand" href="index.html">FARAH <span>WOOD</span></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="index.html">Главная</a>
+						</li>
+						<li><a class="nav-link" href="shop.html">Магазин</a></li>
+                        <li><a class="nav-link" href="foto.html">Галерия</a></li>
+						<li><a class="nav-link" href="about.html">О Нас</a></li>
+						<div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ручки</button>                                                          
+  <ul class="dropdown-menu">
+   <li><a class="dropdown-item" href="services.html" style="background-color: rgb(15, 51, 7); color:white">Ручки дверные</a></li>
+    <li><a class="dropdown-item" href="Ручки дверные современный.html"style="background-color: rgb(15, 51, 7); color:white">Ручки дверные современный</a></li>
+  </ul>
+                         </div>
+						<li><a class="nav-link" href="blog.html">Блог</a></li>
+						<li><a class="nav-link" href="contact.html">Контакт</a></li>
+					</ul>
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li><a class="nav-link" href="contact.html"><img src="images/user.svg"></a></li>
+						<li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		</nav>
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+        <h1 class="main-title">Эксклюзивные ручки,<br> от которых захватывает дух</h1>
+<p class="hero-description">
+  Не просто фурнитура — а ювелирное украшение для вашего интерьера от <strong>FARAH WOOD</strong>.<br>
+  Безупречные линии, роскошные текстуры и тактильный восторг при каждом прикосновении.<br>
+  <span style="font-weight: 400; font-size: 1.1em; opacity: 1;">Прикоснитесь к роскоши — создайте эффект «Вау» в каждой детали.</span>
+</p>
+            <div class="hero-btns" style="margin-top: 20px; display: flex; gap: 10px;">
+                <button style="background: #f9bf29; border: none; padding: 10px 20px; font-weight: bold; cursor:pointer;">Купить</button>
+                <button style="background: transparent; border: 1px solid white; color: white; padding: 10px 20px; cursor:pointer;">Узнать</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/026.png" class="door-img" alt="Door">
+        </div>
+    </div>
+    <div class="wood-line-new">
+        <span class="wood-text">ДЕРЕВЯННЫЙ</span>
+    </div>
+</section>
+<hr>
+<div class="untree_co-section product-section" >
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title" style="color: #075000; font-size: 36px;">Коллекция дверных ручек</h2>
+                <p style="color: #154a09; font-size: 18px;">Выбирайте фурнитуру Palladium и другие элитные бренды для ваших дверей</p>
+            </div>
+        </div>
+
+        <div class="row" id="handles-grid">
+            <div class="col-12 col-md-4 col-lg-4 mb-5 text-center">
+                <div class="product-item" style="background: #fff; padding: 30px; border-radius: 10px; transition: 0.3s; height: 100%;">
+                    <img src="adden/a1.png" class="img-fluid mb-4" alt="Palladium A Tione GP">
+                    <h3 style="color: #2f2f2f; font-size: 18px; min-height: 50px;">Дверная ручка</h3>
+                    
+                    <select class="form-select mb-3" style="border: 1px solid #ddd; font-size: 14px;">
+                        <option>Цвет: GRANE Графит (S-560) GRAPHITE</option>
+                    </select>
+                    <a href="cart.html" class="btn" style="background: #3b5d50; color: #fff; width: 100%; padding: 12px; font-weight: bold; border-radius: 5px;">
+                        В корзину
+                    </a>
+                </div>
+            </div>
+			     <div class="col-12 col-md-4 col-lg-4 mb-5 text-center">
+                <div class="product-item" style="background: #fff; padding: 30px; border-radius: 10px; transition: 0.3s; height: 100%;">
+                    <img src="adden/a2.png" class="img-fluid mb-4" alt="Palladium A Tione GP">
+                    <h3 style="color: #2f2f2f; font-size: 18px; min-height: 50px;">Дверная ручки</h3>
+                    <select class="form-select mb-3" style="border: 1px solid #ddd; font-size: 14px;">
+                        <option>Цвет: LEDO (S-522) BLACK Черный</option>
+                    </select>                    
+                    <a href="cart.html" class="btn" style="background: #3b5d50; color: #fff; width: 100%; padding: 12px; font-weight: bold; border-radius: 5px;">
+                        В корзину
+                    </a>
+                </div>
+            </div>
+			     <div class="col-12 col-md-4 col-lg-4 mb-5 text-center">
+                <div class="product-item" style="background: #fff; padding: 30px; border-radius: 10px; transition: 0.3s; height: 100%;">
+                    <img src="adden/a3.png" class="img-fluid mb-4" alt="Palladium A Tione GP">
+                    <h3 style="color: #2f2f2f; font-size: 18px; min-height: 50px;">Дверная ручки</h3>                   
+                    <select class="form-select mb-3" style="border: 1px solid #ddd; font-size: 14px;">
+                        <option>Цвет: SOLAR (S-535) BLACK ЧЕРНЫЙ</option>
+                    </select>          
+                    <a href="cart.html" class="btn" style="background: #3b5d50; color: #fff; width: 100%; padding: 12px; font-weight: bold; border-radius: 5px;">
+                        В корзину
+                    </a>
+                </div>
+            </div>
+            </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <button id="loadMore" class="btn" style="background: #f9bf29; color: #3a544a; padding: 15px 50px; border-radius: 30px; font-weight: bold; font-size: 18px; border: none;">
+                    Показать еще
+					
+                </button>
+				
+            </div>
+        </div>
+
+
+    </div>
+</div>
+		<div class="product-section pt-0">
+			<div class="container">
+				<div class="row">
+
+				
+					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+						<h2 class="mb-4 section-title">FARAH WOOD — Качество в каждом метре, создаем лучшее для вашего дома:</h2>
+						<p class="mb-4">Двери из массива: Натуральное дерево, которое дарит уют и служит десятилетиями.
+
+Лестницы из дуба: Прочные, надежные и величественные конструкции для вашего успеха.
+
+Премиальные материалы: Используем только отборную древесину и лучшую фурнитуру. </p>
+						<p><a href="#" class="btn">Читать дальше</a></p>
+					</div> 
+					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+<a class="product-item" href="#">
+							<img src="images/11.png" class="img-fluid product-thumbnail">
+							<h3 class="product-title">Неоклассика Лестницы</h3>
+							<span class="icon-cross">
+								<img src="images/cross.svg" class="img-fluid">
+							</span>
+						</a>
+					</div> 
+					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+						<a class="product-item" href="#">
+							<img src="images/12.png" class="img-fluid product-thumbnail">
+							<h3 class="product-title">Современный Минимализм</h3>
+							<span class="icon-cross">
+								<img src="images/cross.svg" class="img-fluid">
+							</span>
+						</a>
+					</div>
+					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+						<a class="product-item" href="#">
+							<img src="images/13.jpeg" class="img-fluid product-thumbnail">
+							<h3 class="product-title">Эко-Лофт / Hi-Tech</h3>
+							<span class="icon-cross">
+								<img src="images/cross.svg" class="img-fluid">
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<footer class="footer-section">
+    <div class="container relative">
+
+        <div class="sofa-img" style="max-width: 350px; position: absolute; right: 0; top: -150px; z-index: 1;">
+            <img src="images/013.png" alt="Image" class="img-fluid">
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="subscription-form">
+                    <h3 class="d-flex align-items-center mb-3">
+                        <span class="me-2"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid" style="width: 24px;"></span>
+                        <span id="article-title">Идеи межкомнатных дверей для небольших квартир</span>
+                    </h3>
+
+                    <form action="javascript:void(0);" onsubmit="sendToWhatsApp()" class="row g-2 align-items-center">
+                        <div class="col-12 col-sm-auto">
+                            <input type="text" id="client-name" class="form-control" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <input type="text" id="client-info" class="form-control" placeholder="Ваш телефон" required>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <span class="fa fa-paper-plane"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5 mb-5 mt-4">
+            <div class="col-lg-4">
+                <div class="mb-4 footer-logo-wrap">
+                    <a href="#" class="footer-logo">Farah Wood<span>.</span></a>
+                </div>
+                <p class="mb-4">Мы создаем изделия из натурального дерева высшего качества: от элитных дверей до надежных лестниц. Ручная работа и долговечность в каждом изделии.</p>
+
+                <ul class="list-unstyled custom-social d-flex">
+                    <li class="me-3"><a href="https://www.facebook.com/farahwood" target="_blank"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+                    <li class="me-3"><a href="https://www.instagram.com/farahwood_" target="_blank"><span class="fa fa-brands fa-instagram"></span></a></li>
+                    <li class="me-3"><a href="https://wa.me/992920000070" target="_blank"><span class="fa fa-brands fa-whatsapp"></span></a></li>
+                    <li><a href="https://t.me/+992920000070" target="_blank"><span class="fa fa-brands fa-telegram"></span></a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="row links-wrap">
+                    <div class="col-6 col-md-3 mb-3">
+                        <ul class="list-unstyled">
+                            <li><a href="about.html">О нас</a></li>
+                            <li><a href="services.html">Каталог</a></li>
+                            <li><a href="blog.html">Блог</a></li>
+                            <li><a href="contact.html">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <ul class="list-unstyled">
+                            <li><a href="shop.html">Двери</a></li>
+                            <li><a href="shop.html">Лестницы</a></li>
+                            <li><a href="shop.html">Шкафы</a></li>
+                            <li><a href="contact.html">Замер</a></li>
+                            <li><a href="foto.html">Наши работы</a></li>
+                        </ul>
+                    </div>
+            
+                    <div class="col-6 col-md-3 mb-3">
+                        <ul class="list-unstyled">
+                            <li><a href="shop.html">Интерьеры</a></li>
+                            <li><a href="#">На заказ</a></li>
+                            <li><a href="shop.html">Встроенные</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-top copyright">
+            <div class="row pt-4 flex-column-reverse flex-lg-row">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <p class="mb-2">
+                        &copy; <script>document.write(new Date().getFullYear());</script> Farah Wood. 
+                        Разработчик: <a href="mailto:umar_aliboev@icloud.com" class="text-decoration-none">Умар Алибоев</a>
+                    </p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end mb-3 mb-lg-0">
+                    <ul class="list-unstyled d-inline-flex">
+                        <li class="me-4"><a href="#">Условия</a></li>
+                        <li><a href="#">Конфиденциальность</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+function sendToWhatsApp() {
+    const name = document.getElementById('client-name').value;
+    const info = document.getElementById('client-info').value;
+    const article = document.getElementById('article-title').innerText;
+
+    const phone = "992990000050"; // Твой номер
+    const text = `Ассаламу алейкум! Меня заинтересовала тема: "${article}".\n\n` +
+                 `Имя: ${name}\n` +
+                 `Контакт: ${info}\n` +
+                 `Хочу сделать свой первый заказ в FARAH WOOD.`;
+    
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+}
+</script>
+<script>
+const handlesData = [
+    { name: "SOLAR S-535 NICKEL",  img: "adden/a4.png", color: "НИКЕЛЬ", id: "h1" },
+    { name: "Дверный ручки COSMO S-533 GRAPHITE",  img: "adden/a5.png", color: "ГРАФИТ", id: "h2" },
+    { name: "Дверный ручки COSMO S-533 BLACK",  img: "adden/a6.png", color: "ЧЕРНЫЙ", id: "h3" },
+    { name: "Дверный ручки COSMO S-533 NICKEL",  img: "adden/a7.png", color: "НИКЕЛЬ", id: "h4" },
+    { name: "Дверный ручки URSA S-552 NICKEL", img: "adden/a8.png", color: "НИКЕЛЬ", id: "h5" },
+    { name: "Дверный ручки RIVER S-530 BLACK",  img: "adden/a9.png", color: "Черный", id: "h6" },
+    { name: "Дверный ручки RIVER S-486 GRAPHITE",  img: "adden/a7.png", color: "ГРАФИТ", id: "h7" },
+    { name: "Дверный ручки LYRE S-489 NICKEL",  img: "adden/a11.png", color: "НИКЕЛЬ", id: "h8" },
+    { name: "Дверный ручки LYRE S-489 GRAPHITE",  img: "adden/a12.png", color: "ГРАФИТ", id: "h9" },
+    { name: "Дверный ручки ELIT S-487 NICKEL",  img: "adden/a13.png", color: "НИКЕЛЬ", id: "h10" },
+    { name: "Дверный ручки COMET S-483 GRAPHITE", img: "adden/a14.png", color: "ГРАФИТ", id: "h11" },
+    { name: "Дверный ручки DOVE S-484 GRAPHITE",  img: "adden/a15.png", color: "ГРАФИТ", id: "h12" },
+    { name: "Дверный ручки S040-140CC ИСПАНИЯ",  img: "adden/a16.png", color: "ХРОМ", id: "h13" },
+    { name: "Дверный ручки S040-130CC ИСПАНИЯ",  img: "adden/a17.png", color: "ХРОМ", id: "h14" },
+    { name: "Дверный ручки S040-12799 ИСПАНИЯ",  img: "adden/a18.png", color: "ХРОМ-МАТОВЫЙ", id: "h15" },
+    { name: "Дверный ручки S040-15699 ИСПАНИЯ",  img: "adden/a19.png", color: "ХРОМ-МАТОВЫЙ", id: "h16" },
+    { name: "Дверный ручки S040-14299 ИСПАНИЯ", img: "adden/a20.png", color: "ХРОМ-МАТОВЫЙ", id: "h17" },
+    { name: "Дверный ручки S040-14299 ИСПАНИЯ",  img: "adden/a21.png", color: "ХРОМ-МАТОВЫЙ", id: "h18" },
+    { name: "Дверный ручки S040-14299 ИСПАНИЯ",  img: "adden/a22.png", color: "ХРОМ-МАТОВЫЙ", id: "h19" },
+    { name: "Дверный ручки S040-7299 ИСПАНИЯ",  img: "adden/a23.png", color: "ХРОМ-МАТОВЫЙ", id: "h20" },
+    { name: "Дверный ручки S040-14899 ИСПАНИЯ",  img: "adden/a24.png", color: "ХРОМ-МАТОВЫЙ", id: "h21" },
+    { name: "Дверный ручки S040-14899 ИСПАНИЯ",  img: "adden/a25.png", color: "ХРОМ-МАТОВЫЙ", id: "h22" },
+    { name: "Дверный ручки S040-14899 ИСПАНИЯ", img: "adden/a26.png", color: "ХРОМ-МАТОВЫЙ", id: "h23" },
+    { name: "Дверный ручки S040-4499 ИСПАНИЯ",  img: "adden/a27.png", color: "ХРОМ-МАТОВЫЙ", id: "h24" },
+    { name: "Дверный ручки S040-13099 ИСПАНИЯ",  img: "adden/a28.png", color: "ХРОМ-МАТОВЫЙ", id: "h20" },
+    { name: "Дверный ручки S010-11999 ИСПАНИЯ",  img: "adden/a29.png", color: "ХРОМ-МАТОВЫЙ", id: "h21" },
+    { name: "Дверный ручки S010-110HH ИСПАНИЯ",  img: "adden/a30.png", color: "БЕЛЫЙ-НИКЕЛЬ", id: "h22" },
+    { name: "Дверный ручки S010-3499 ИСПАНИЯ", img: "adden/a31.png", color: "ХРОМ-МАТОВЫЙ", id: "h23" },
+    { name: "Дверный ручки S010-47HH ИСПАНИЯ",  img: "adden/a32.png", color: "БЕЛЫЙ-НИКЕЛЬ", id: "h24" },
+    { name: "Дверный ручки S010-X11HH ИСПАНИЯ",  img: "adden/a33.png", color: "БЕЛЫЙ-НИКЕЛЬ", id: "h20" },
+    { name: "Дверный ручки S010-X11HH ИСПАНИЯ",  img: "adden/a34.png", color: "БЕЛЫЙ-НИКЕЛЬ", id: "h21" },
+    { name: "Дверный ручки S010-110HH ИСПАНИЯ",  img: "adden/a35.png", color: "БЕЛЫЙ-НИКЕЛЬ", id: "h22" },
+    { name: "Дверный ручки S010-9699 ИСПАНИЯ", img: "adden/a36.png", color: "ХРОМ-МАТОВЫЙ", id: "h23" },
+    { name: "Дверный ручки PIEZZA Q360 BLACK/MAT.NICKEL",  img: "adden/a37.png", color: "ЧЕРНЫЙ-МАТОВЫЙ НИКЕЛЬ", id: "h24" },
+    { name: "Дверный ручки LEDO S-522 BLACK",  img: "adden/a38.png", color: "ЧЕРНЫЙ", id: "h25" },
+    { name: "Дверный ручки PIEZZA Q307 BLACK",  img: "adden/a39.png", color: "ЧЕРНЫЙ", id: "h26" },
+    { name: "Дверный ручки URSA S-552 NICKEL",  img: "adden/a40.png", color: "НИКЕЛЬ", id: "h27" },
+    { name: "Дверный ручки ESPADA Q321 BLACK NICKEL/CHORME", img: "adden/a41.png", color: "ЧЕРНЫЙ-НИКЕЛЬ ХРОМ", id: "h28" },
+    { name: "Дверный ручки SOLAR S-535 BLACK",  img: "adden/a42.png", color: "ЧЕРНЫЙ", id: "h29" },
+    { name: "Дверный ручки PIEZZA Q360 BLACK/NICKEL/CHORME",  img: "adden/a43.png", color: "ЧЕРНЫЙ-НИКЕЛЬ ХРОМ", id: "h30" },
+    { name: "Дверный ручки COSMO S-833 GRAPHITE",  img: "adden/a44.png", color: "ГРАФИТ", id: "h31" },
+    { name: "Дверный ручки PLANA Q307 SATIN CHORME",  img: "adden/a45.png", color: "МАТОВЫЙ-ХРОМ", id: "h32" },
+    { name: "Дверный ручки ADDEN BAY PIEZA Q340 WHITE/CHROME", img: "adden/a46.png", color: "ХРОМ-БЕЛЫЙ ВСТАВКА", id: "h33" },
+    { name: "Дверный ручки RIVER S-486 GRAPHITE",  img: "adden/a47.png", color: "ГРАФИТ", id: "h34" },
+    { name: "Дверный ручки S040-7299", img: "adden/a48.png", color: "ХРОМ-МАТОВЫЙ", id: "h35" },
+    { name: "Дверный ручки COSMO S-533 BLACK",  img: "adden/a49.png", color: "ЧЕРНЫЙ", id: "h36" },
+    { name: "Дверный ручки LYRE S-489 GRAPHITE",  img: "adden/a50.png", color: "ГРАФИТ", id: "h37" },
+    { name: "Дверный ручки RUSH A117 CHORME",  img: "adden/a51.png", color: "МАТОВЫЙ-ХРОМ", id: "h38" },
+    { name: "Дверный ручки PIEZA Q360 SATIN CHORME",  img: "adden/a52.png", color: "МАТОВЫЙ-ХРОМ", id: "h39" },
+    { name: "Дверный ручки VERGE PRISM S.CHORME", img: "adden/a53.png", color: "МАТОВЫЙ-ХРОМ", id: "h40" },
+    { name: "Дверный ручки VERGE PRISM ASH SILVER",  img: "adden/a54.png", color: "ПЕПЕЛЬНО-СЕРЕБРИСТЫЙ", id: "h41" },
+    { name: "Дверный ручки VERGE STICK S.CHROME",  img: "adden/a55.png", color: "МАТОВЫЙ-ХРОМ", id: "h42" },
+    { name: "Дверный ручки VERGE STICK M.BLACK",  img: "adden/a56.png", color: "МАТОВЫЙ ЧЕРНЫЙ", id: "h43" },
+    { name: "Дверный ручки VERGE STICK M.BLACK",  img: "adden/a57.png", color: "МАТОВЫЙ-ЧЕРНЫЙ", id: "h44" },
+    { name: "Дверный ручки VERGE PLANO S.CHORME", img: "adden/a58.png", color: "МАТОВЫЙ-ХРОМ", id: "h45" },
+    { name: "Дверный ручки VERGE PLANO M.BLACK", img: "adden/a59.png", color: "МАТОВЫЙ-ЧЕРНЫЙ", id: "h46" },
+    { name: "Дверный ручки VERGE PLANO M.WHETE",  img: "adden/a60.png", color: "МАТОВЫЙ-БЕЛЫЙ", id: "h47" }
+
+
+    ];
+
+let currentIndex = 0;
+
+document.getElementById('loadMore').addEventListener('click', function() {
+    const grid = document.getElementById('handles-grid');
+    
+    for (let i = 0; i < 12; i++) {
+        if (currentIndex < handlesData.length) {
+            const item = handlesData[currentIndex];
+            const finalImgPath = item.img.includes('/') ? item.img : `images/${item.img}`;
+            
+            const html = `
+                <div class="col-12 col-md-4 mb-4 fade-in">
+                    <div class="product-item">
+                        <div class="img-container">
+                             <img src="${finalImgPath}" class="img-fluid" alt="${item.name}">
+                        </div>
+                        <div class="product-content">
+                            <h3>${item.name}</h3>
+                            <div class="rating-stars" onclick="addVote('${item.id}')">
+                                <span class="stars">★★★★★</span>
+                                <span class="count" id="count-${item.id}">12</span>
+                            </div>
+                            <select class="form-select my-3">
+                                <option>Цвет: ${item.color}</option>
+                            </select>
+                        
+                            <a href="cart.html" class="btn-cart">В корзину</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.insertAdjacentHTML('beforeend', html);
+            currentIndex++;
+        }
+    }
+
+    if (currentIndex >= handlesData.length) {
+        this.style.display = 'none';
+    }
+});
+
+// Функция для счетчика звезд
+function addVote(id) {
+    let el = document.getElementById('count-' + id);
+    let val = parseInt(el.innerText);
+    el.innerText = val + 1;
+    alert("Спасибо за вашу оценку!");
+}
+</script>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>
+	</body>
+
+</html>
